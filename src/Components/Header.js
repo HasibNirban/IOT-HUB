@@ -1,6 +1,7 @@
 
 //import useState hook to create menu collapse state
 import React from "react";
+import { Link } from "react-router-dom";
 //import react pro sidebar components
 import {
   ProSidebar,
@@ -66,7 +67,7 @@ let menuCollapse=false;
           </SidebarContent>
           <SidebarFooter>
             <Menu iconShape="square">
-              <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
+              <MenuItem icon={<FiLogOut />} ><Link to="/">Register <br/> Device</Link></MenuItem>
             </Menu>
           </SidebarFooter>
         </ProSidebar>

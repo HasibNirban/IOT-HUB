@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-const StatusCard = (props) => {
-    console.log(props.data.active_status);
+const StatusCard = ({ data, fun }) => {
+    console.log(data.active_status);
     const [toggle, settoggle] = useState(false)
     const deleteItem = async (id) => {
         console.log(`${id} is deleted`);
@@ -13,8 +13,8 @@ const StatusCard = (props) => {
             }
             const res = await fetch(`https://hasibnirban.pythonanywhere.com/sensor/${id}/`, setHeader);
             const data = await res.json();
-            console.log(props.data);
-            props.fun(!props.data.active_status);
+            console.log(data);
+            fun();
         } catch (error) {
             console.log(`The error is ${error}`);
         }
@@ -35,7 +35,8 @@ const StatusCard = (props) => {
                 })
             }
             const res = await fetch(`https://hasibnirban.pythonanywhere.com/sensor/${id}/toggle_status/`, setHeader);
-            props.fun(!props.data.active_status);
+            const data = await res.json();
+            fun();
 
         } catch (error) {
             console.log(`The error is ${error}`);
@@ -45,13 +46,13 @@ const StatusCard = (props) => {
     return (
         <div className='card_2'>
             <input type='checkbox' name="checkbox" onClick={() => settoggle(!toggle)} />
-            <h3>{props.data.sensor_id}</h3>
-            <p>{props.data.sensor_name}</p>
-            <p>{props.data.sensor_type}</p>
-            <p>{props.data.sensor_value}</p>
-            {props.data.active_status ? <p style={{ color: "green" }}>Online </p> : <p style={{ color: "red" }}>Offline </p>}
-            {toggle ? <button onClick={() => deleteItem(props.data.id)}>Delete</button> : ""}
-            {toggle ? <button onClick={() => ToggleItem(props.data.id)}>Toggle Status</button> : ""}
+            <h3>{data.sensor_id}</h3>
+            <p>{data.sensor_name}</p>
+            <p>{data.sensor_type}</p>
+            <p>{data.sensor_value}</p>
+            {data.active_status ? <p style={{ color: "green" }}>Online </p> : <p style={{ color: "red" }}>Offline </p>}
+            {toggle ? <button onClick={() => deleteItem(data.id)}>Delete</button> : ""}
+            {toggle ? <button onClick={() => ToggleItem(data.id)}>Toggle Status</button> : ""}
         </div>
     )
 }

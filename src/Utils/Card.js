@@ -1,5 +1,5 @@
 import React from 'react'
-
+import '../Components/Stat.css'
 const Card = ({data}) => {
   
   return (

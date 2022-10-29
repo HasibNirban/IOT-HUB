@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import './Stat.css';
 import StatusCard from '../Utils/StatusCard';
+
 const StatusBoard = () => {
   const [data, setdata] = useState([])
-  const [d, setd] = useState(false);
   useEffect(() => {
     const getData = async () => {
       try {
@@ -21,13 +21,11 @@ const StatusBoard = () => {
       }
     }
     getData();
-  }, [d])
+  }, [])
 
-  const fun_cal = (data) => {
-    if (d === true) {
-      setd(false);
-    }
-    setd(data);
+  const fun_cal = () => {
+    console.log("funcal");
+    setdata(data);
   }
 
 
